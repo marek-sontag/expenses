@@ -13,6 +13,8 @@ public class Expenses {
     public static void main(String[] args) {
         System.out.println("Witaj w rejestrze wydatków!");
 
+        Expense[] expenses = new Expense[100];
+        int index = 0;
         int option = -1;
         do {
             printMenu();
@@ -27,7 +29,7 @@ public class Expenses {
                 case 0:
                     break;
                 case 1:
-                    addExpense();
+                    expenses[index++] = addExpense();
                     break;
                 case 2:
                     // show expenses
