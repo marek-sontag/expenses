@@ -15,9 +15,9 @@ public class Expense {
 
     private LocalDateTime timestamp;
     private BigDecimal amount;
-    private int category;
+    private Category category;
 
-    public Expense(LocalDateTime timestamp, BigDecimal amount, int category) {
+    public Expense(LocalDateTime timestamp, BigDecimal amount, Category category) {
         this.timestamp = timestamp;
         this.amount = amount;
         this.category = category;
@@ -31,7 +31,7 @@ public class Expense {
         return amount;
     }
 
-    public int getCategory() {
+    public Category getCategory() {
         return category;
     }
 }
