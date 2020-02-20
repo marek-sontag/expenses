@@ -34,4 +34,13 @@ public class Expense {
     public Category getCategory() {
         return category;
     }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "timestamp=" + timestamp +
+                ", amount=" + amount +
+                ", category=" + category +
+                '}';
+    }
 }

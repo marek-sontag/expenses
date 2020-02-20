@@ -32,7 +32,7 @@ public class Expenses {
                     expenses[index++] = addExpense();
                     break;
                 case 2:
-                    // show expenses
+                    showExpenses(expenses);
                     break;
                 case 3:
                     // show expenses from category
@@ -79,5 +79,13 @@ public class Expenses {
         System.out.printf("Kwota: %s, kategoria: %s\n", amountString, categoryString);
 
         return new Expense(LocalDateTime.now(), new BigDecimal(amountString), CATEGORIES[Integer.parseInt(categoryString) - 1]);
+    }
+
+    private static void showExpenses(Expense[] expenses) {
+        for (Expense expense: expenses) {
+            if (expense != null) {
+                System.out.println(expense.toString());
+            }
+        }
     }
 }
