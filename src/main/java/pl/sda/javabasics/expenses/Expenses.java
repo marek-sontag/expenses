@@ -35,7 +35,7 @@ public class Expenses {
                     showExpenses(expenses);
                     break;
                 case 3:
-                    // show expenses from category
+                    showExpensesFromCategory(expenses);
                     break;
                 case 4:
                     // show expenses greater than
@@ -66,6 +66,24 @@ public class Expenses {
             amountString = scanner.nextLine();
         }
 
+        Category category = readCategory();
+        System.out.printf("Kwota: %s, kategoria: %s\n", amountString, category.getName());
+
+        return new Expense(LocalDateTime.now(), new BigDecimal(amountString), category);
+    }
+
+    private static void showExpenses(Expense[] expenses) {
+        if (expenses.length == 0) {
+            System.out.println("Brak wydatków");
+        }
+        for (Expense expense: expenses) {
+            if (expense != null) {
+                System.out.println(expense.toString());
+            }
+        }
+    }
+
+    private static Category readCategory() {
         System.out.println("Podaj kategorię wydatku:");
         for (Category category: CATEGORIES) {
             System.out.println((category.getNumber() + 1) + ". " + category.getName());
@@ -75,17 +93,20 @@ public class Expenses {
             System.out.println("Nieprawidłowa kategoria, wpisz ponownie!");
             categoryString = scanner.nextLine();
         }
-
-        System.out.printf("Kwota: %s, kategoria: %s\n", amountString, categoryString);
-
-        return new Expense(LocalDateTime.now(), new BigDecimal(amountString), CATEGORIES[Integer.parseInt(categoryString) - 1]);
+        return CATEGORIES[Integer.parseInt(categoryString) - 1];
     }
 
-    private static void showExpenses(Expense[] expenses) {
+    private static void showExpensesFromCategory(Expense[] expenses) {
+        Category category = readCategory();
+
+        Expense[] expensesFromCategory = new Expense[100];
+        int index = 0;
         for (Expense expense: expenses) {
-            if (expense != null) {
-                System.out.println(expense.toString());
+            if (expense != null && expense.getCategory().getNumber() == category.getNumber()) {
+                expensesFromCategory[index++] = expense;
             }
         }
+
+        showExpenses(expensesFromCategory);
     }
 }
